@@ -1,15 +1,15 @@
 default_settings: null
 behaviors:
-  CubeAgent:
+  MoveToGoal:
     trainer_type: ppo
     hyperparameters:
-      batch_size: 64
-      buffer_size: 12000
+      batch_size: 1024
+      buffer_size: 10240
       learning_rate: 0.0003
-      beta: 0.0005
+      beta: 0.005
       epsilon: 0.2
       lambd: 0.95
-      num_epoch: 30
+      num_epoch: 3
       shared_critic: false
       learning_rate_schedule: linear
       beta_schedule: linear
@@ -40,7 +40,7 @@ behaviors:
     even_checkpoints: false
     max_steps: 500000
     time_horizon: 64
-    summary_freq: 10000
+    summary_freq: 50000
     threaded: false
     self_play: null
     behavioral_cloning: null

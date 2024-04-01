@@ -155,6 +155,9 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   targetTransform: {fileID: 0}
+  winMaterial: {fileID: 2100000, guid: 7195dc7437d7ca848b01db13d25f49ae, type: 2}
+  losMaterial: {fileID: 2100000, guid: ac7c733b7bc53f54bb0a81a57b875208, type: 2}
+  floorMeshRenderer: {fileID: 8016461548910540085, guid: 712db8b304469cc49ad477e85b6e24ec, type: 3}
 --- !u!114 &5946357781771734748
 MonoBehaviour:
   m_ObjectHideFlags: 0
