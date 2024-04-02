@@ -1,0 +1,19 @@
+Création d'un nouveau projet sur Unity HUB
+
+Création d'un environnement python pour le projet
+!! Fonctionne que avec python 3.8 !!
+Pour changer de version de python, changer l'ordre des variables d'environnement et placer la 3.8 tout en haut.
+
+Python -m venv NomDeEnvironnement
+
+Activer l'environnement ./NomDeEnvironnement/Script/activate
+
+Mettre à jour pip python -m pip install --upgrade pip
+
+Installer MLAgents pip install mlagents
+
+Installer onnx pip install onnx
+
+Installer torch pip3 install torch torchvision torchaudio
+
+Installer protobuf pip3 install protobuf==3.20.3
