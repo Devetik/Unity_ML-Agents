@@ -1,0 +1,29 @@
+{
+    "AgentControl": {
+        "checkpoints": [
+            {
+                "steps": 348801,
+                "file_path": "results\\Simple10\\AgentControl\\AgentControl-348801.onnx",
+                "reward": null,
+                "creation_time": 1712100912.642962,
+                "auxillary_file_paths": [
+                    "results\\Simple10\\AgentControl\\AgentControl-348801.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 348801,
+            "file_path": "results\\Simple10\\AgentControl.onnx",
+            "reward": null,
+            "creation_time": 1712100912.642962,
+            "auxillary_file_paths": [
+                "results\\Simple10\\AgentControl\\AgentControl-348801.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0.dev0",
+        "torch_version": "2.2.2+cpu"
+    }
+}

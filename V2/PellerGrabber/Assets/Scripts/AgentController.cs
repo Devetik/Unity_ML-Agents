@@ -7,21 +7,43 @@ using Unity.MLAgents.Sensors;
 
 public class AgentMove : Agent
 {
+    [SerializeField] private Transform target;
+    [SerializeField] private float moveSpeed = 1f;
+    public bool firstRun = true;
+    public bool hitWalls = false;
+    
     public override void OnEpisodeBegin()
     {
         int rand = Random.Range(0,2);
         if(rand == 0)
         {
             target.localPosition = new Vector3(Random.Range(1,4), 0f,Random.Range(1,4));
-            transform.localPosition = new Vector3(Random.Range(-1,-4), 0f,Random.Range(-1,-4));
+            if(firstRun || hitWalls)
+            {
+                transform.localPosition = new Vector3(Random.Range(-1,-4), 0f,Random.Range(-1,-4));
+                firstRun = hitWalls = false;
+            }
+            else
+            {
+                transform.localPosition = new Vector3(transform.localPosition[0],transform.localPosition[1],transform.localPosition[2]);
+            }
         }
         if(rand == 1)
         {
             target.localPosition = new Vector3(Random.Range(-1,-4), 0f,Random.Range(-1,-4));
-            transform.localPosition = new Vector3(Random.Range(1,4), 0f,Random.Range(1,4));
+            if(firstRun || hitWalls)
+            {
+                transform.localPosition = new Vector3(Random.Range(1,4), 0f,Random.Range(1,4));
+                firstRun = hitWalls = false;
+            }
+            else
+            {
+                transform.localPosition = new Vector3(transform.localPosition[0],transform.localPosition[1],transform.localPosition[2]);
+            }
         }
     }
-    [SerializeField] private Transform target;
+
+            
     public override void CollectObservations(VectorSensor sensor)
     {
         sensor.AddObservation(transform.localPosition);
@@ -29,11 +51,13 @@ public class AgentMove : Agent
     }
     public override void OnActionReceived(ActionBuffers action)
     {
-        float moveSpeed = 2f;
         float moveX = action.ContinuousActions[0];
         float moveY = action.ContinuousActions[1];
 
-        transform.localPosition += new Vector3(moveX, 0f, moveY) * Time.deltaTime * moveSpeed;
+        Vector3 velocity = new Vector3(moveX, 0f, moveY);
+        velocity = velocity.normalized * Time.deltaTime * moveSpeed;
+        transform.localPosition += velocity;
+        // transform.localPosition += new Vector3(moveX, 0f, moveY) * Time.deltaTime * moveSpeed;
     }
 
     public override void Heuristic(in ActionBuffers actionOut)
@@ -52,7 +76,8 @@ public class AgentMove : Agent
         }
         if(other.gameObject.tag == "Walls")
         {
-            AddReward(-5f);
+            AddReward(-1f);
+            hitWalls = true;
             EndEpisode();
         }
     }
