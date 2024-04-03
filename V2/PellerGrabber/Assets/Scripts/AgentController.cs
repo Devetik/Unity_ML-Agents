@@ -11,6 +11,12 @@ public class AgentMove : Agent
     [SerializeField] private float moveSpeed = 1f;
     public bool firstRun = true;
     public bool hitWalls = false;
+    private Rigidbody rb;
+
+    public override void Initialize()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     
     public override void OnEpisodeBegin()
     {
@@ -47,17 +53,19 @@ public class AgentMove : Agent
     public override void CollectObservations(VectorSensor sensor)
     {
         sensor.AddObservation(transform.localPosition);
-        sensor.AddObservation(target.localPosition);
+        // sensor.AddObservation(target.localPosition);
     }
     public override void OnActionReceived(ActionBuffers action)
     {
-        float moveX = action.ContinuousActions[0];
-        float moveY = action.ContinuousActions[1];
+        float moveRotate = action.ContinuousActions[0];
+        float moveForward = action.ContinuousActions[1];
 
-        Vector3 velocity = new Vector3(moveX, 0f, moveY);
-        velocity = velocity.normalized * Time.deltaTime * moveSpeed;
-        transform.localPosition += velocity;
-        // transform.localPosition += new Vector3(moveX, 0f, moveY) * Time.deltaTime * moveSpeed;
+        rb.MovePosition(transform.position + transform.forward * moveForward * moveSpeed * Time.deltaTime);
+        transform.Rotate(0f, moveRotate * moveSpeed, 0f, Space.Self);
+
+        // Vector3 velocity = new Vector3(moveX, 0f, moveY);
+        // velocity = velocity.normalized * Time.deltaTime * moveSpeed;
+        // transform.localPosition += velocity;
     }
 
     public override void Heuristic(in ActionBuffers actionOut)
