@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 4652898333678239450}
   - component: {fileID: 7961245709259120744}
   - component: {fileID: 3319790532259314423}
+  - component: {fileID: -459269406273152950}
   m_Layer: 0
-  m_Name: TextDeCanvas
+  m_Name: FloatingText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +28,8 @@ RectTransform:
   m_GameObject: {fileID: 5759936321393474831}
   m_LocalRotation: {x: 0.00000012398483, y: -0.8893554, z: 0.4572165, w: -0.00000022779402}
   m_LocalPosition: {x: 0, y: 0, z: -0.10345615}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.14, y: 0.14, z: 0.14}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 54.415, y: -180, z: 0}
@@ -171,3 +172,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 7961245709259120744}
   m_maskType: 0
+--- !u!111 &-459269406273152950
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5759936321393474831}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 04e1e027bff5c9d4e8b77f411f5f9e0a, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 04e1e027bff5c9d4e8b77f411f5f9e0a, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 1
