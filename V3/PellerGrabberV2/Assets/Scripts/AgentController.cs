@@ -15,12 +15,15 @@ public class AgentMove : Agent
     private bool target2Catch = false;
     private bool target3Catch = false;
     private int targetHitOrder = 0;
+    private bool hitInFullOrder = true;
     [SerializeField] private float moveSpeed = 1f;
     public bool firstRun = true;
     public bool hitWalls = false;
     private Rigidbody rb;
     private Vector3[] positions = new Vector3[3];
-    public Text text;
+    //public Text text;
+    public ScoreManager scoreManager;
+    //public ScoreManager scoreManager = new ScoreManager;
 
 
 
@@ -50,6 +53,7 @@ public class AgentMove : Agent
         target1Catch = false;
         target2Catch = false;
         target3Catch = false;
+        hitInFullOrder = true;
 
         if(firstRun || hitWalls)
         {
@@ -90,19 +94,10 @@ public class AgentMove : Agent
         target2.localPosition = positions[numbers[1]];
         target3.localPosition = positions[numbers[2]];
     }
-
-    // void ShowFloatingText(Vector3 position, float reward)
-    // {
-    //     var testText = Instantiate(FloattingTextPrefab, position, Quaternion.identity, transform);
-    //     testText.GetComponent<TextMesh>().text = ((int)reward).ToString() + " pts";
-    //     Destroy(testText, 1.0f);
-    // }
-
             
     public override void CollectObservations(VectorSensor sensor)
     {
         sensor.AddObservation(transform.localPosition);
-        // sensor.AddObservation(target.localPosition);
     }
     public override void OnActionReceived(ActionBuffers action)
     {
@@ -111,10 +106,6 @@ public class AgentMove : Agent
 
         rb.MovePosition(transform.position + transform.forward * moveForward * moveSpeed * Time.deltaTime);
         transform.Rotate(0f, moveRotate * moveSpeed, 0f, Space.Self);
-
-        // Vector3 velocity = new Vector3(moveX, 0f, moveY);
-        // velocity = velocity.normalized * Time.deltaTime * moveSpeed;
-        // transform.localPosition += velocity;
     }
 
     public override void Heuristic(in ActionBuffers actionOut)
@@ -126,33 +117,27 @@ public class AgentMove : Agent
 
     private void OnTriggerEnter(Collider other)
     {
-        // Debug.Log(other.gameObject.tag);
-        // Debug.Log(targetHitOrder);
-
         float reward = 0f;
         if(other.gameObject.tag != "Walls")
         {
-            
-
             if(other.gameObject.tag == "Target")
             {
-                //TargetControl targetScript = other.gameObject.GetComponent<TargetControl>();
-                //targetScript.ShowFloatingText();
                 target1Catch = true;
                 target.gameObject.SetActive(false);
                 if(targetHitOrder == 0)
                 {
-                    reward =10f;
+                    reward =30f;
                 }
                 else if(targetHitOrder == 1)
                 {
-                    reward =-1f;
+                    reward =1f;
+                    hitInFullOrder = false;
                 }
                 else
                 {
-                    reward =-1f;
+                    reward =1f;
+                    hitInFullOrder = false;
                 }
-                //ShowFloatingText(target.transform.position, reward);
             }
             if(other.gameObject.tag == "Target2")
             {
@@ -160,20 +145,20 @@ public class AgentMove : Agent
                 target2.gameObject.SetActive(false);
                 if(targetHitOrder == 1)
                 {
-                    reward =10f;
+                    reward =20f;
                 }
                 else if(targetHitOrder == 0)
                 {
-                    reward =-1f;
+                    reward =1f;
+                    hitInFullOrder = false;
                 }
                 else
                 {
-                    reward =-1f;
+                    reward =1f;
+                    hitInFullOrder = false;
                 }
-                //ShowFloatingText(target2.transform.position, reward);
             }
             
-
             if(other.gameObject.tag == "Target3")
             {
                 target3Catch = true;
@@ -184,30 +169,46 @@ public class AgentMove : Agent
                 }
                 else if(targetHitOrder == 1)
                 {
-                    reward =-1f;
+                    reward =1f;
+                    hitInFullOrder = false;
                 }
                 else
                 {
-                    reward =-1f;
+                    reward =1f;
+                    hitInFullOrder = false;
                 }
-                //ShowFloatingText(target3.transform.position, reward);
             }
             targetHitOrder++;
         }
 
         if(other.gameObject.tag == "Walls")
         {
-            reward = -1f;
+            reward = -100f;
             hitWalls = true;
             EndEpisode();
         }
-        UIManager.Instance.ShowFloatingText(((int)reward).ToString(), other.transform.position);
-        
-        //text.text = "Reward = " + reward + " Target: " + (targetHitOrder - 1).ToString();
-        AddReward(reward);
+
         if(target1Catch && target2Catch && target3Catch)
         {
+            if(hitInFullOrder)
+            {
+                reward = 100f;
+                AudioSource audioSource = GetComponent<AudioSource>(); // Assurez-vous que votre cible a un composant AudioSource
+                if(audioSource != null /*&& !audioSource.isPlaying*/)
+                {
+                    audioSource.Play(); // Joue le son
+                }
+            }
+            UIManager.Instance.ShowFloatingText(((int)reward).ToString(), other.transform.position);
+            scoreManager.AddScore(reward);
+            AddReward(reward);
             EndEpisode();
+        }
+        else
+        {
+            UIManager.Instance.ShowFloatingText(((int)reward).ToString(), other.transform.position);
+            scoreManager.AddScore(reward);
+            AddReward(reward);
         }
     }
 }

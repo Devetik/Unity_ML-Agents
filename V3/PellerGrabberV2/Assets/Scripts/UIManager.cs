@@ -21,10 +21,9 @@ public class UIManager : MonoBehaviour
 
     public void ShowFloatingText(string text, Vector3 worldPosition)
     {
-        Debug.Log(worldPosition + "XXXXXXXX" + text);
         worldPosition[1] += 0.7f;
         // Convertir la position du monde en position d'écran si nécessaire
-        Vector3 screenPosition = Camera.main.WorldToScreenPoint(worldPosition);
+        //Vector3 screenPosition = Camera.main.WorldToScreenPoint(worldPosition);
 
         // Créer une instance du texte flottant
         var floatingTextInstance = Instantiate(floatingTextPrefab, transform);

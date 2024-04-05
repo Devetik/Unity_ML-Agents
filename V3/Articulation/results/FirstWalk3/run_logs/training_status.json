@@ -1,0 +1,65 @@
+{
+    "AgentTest": {
+        "checkpoints": [
+            {
+                "steps": 499968,
+                "file_path": "results\\FirstWalk3\\AgentTest\\AgentTest-499968.onnx",
+                "reward": null,
+                "creation_time": 1712290342.3435652,
+                "auxillary_file_paths": [
+                    "results\\FirstWalk3\\AgentTest\\AgentTest-499968.pt"
+                ]
+            },
+            {
+                "steps": 999949,
+                "file_path": "results\\FirstWalk3\\AgentTest\\AgentTest-999949.onnx",
+                "reward": null,
+                "creation_time": 1712290500.0796022,
+                "auxillary_file_paths": [
+                    "results\\FirstWalk3\\AgentTest\\AgentTest-999949.pt"
+                ]
+            },
+            {
+                "steps": 1499998,
+                "file_path": "results\\FirstWalk3\\AgentTest\\AgentTest-1499998.onnx",
+                "reward": 802612.30078125,
+                "creation_time": 1712290632.0133555,
+                "auxillary_file_paths": [
+                    "results\\FirstWalk3\\AgentTest\\AgentTest-1499998.pt"
+                ]
+            },
+            {
+                "steps": 1684621,
+                "file_path": "results\\FirstWalk3\\AgentTest\\AgentTest-1684621.onnx",
+                "reward": null,
+                "creation_time": 1712290745.8573937,
+                "auxillary_file_paths": [
+                    "results\\FirstWalk3\\AgentTest\\AgentTest-1684621.pt"
+                ]
+            },
+            {
+                "steps": 1735758,
+                "file_path": "results\\FirstWalk3\\AgentTest\\AgentTest-1735758.onnx",
+                "reward": null,
+                "creation_time": 1712328403.4758725,
+                "auxillary_file_paths": [
+                    "results\\FirstWalk3\\AgentTest\\AgentTest-1735758.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 1735758,
+            "file_path": "results\\FirstWalk3\\AgentTest.onnx",
+            "reward": null,
+            "creation_time": 1712328403.4758725,
+            "auxillary_file_paths": [
+                "results\\FirstWalk3\\AgentTest\\AgentTest-1735758.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0.dev0",
+        "torch_version": "2.2.2+cpu"
+    }
+}

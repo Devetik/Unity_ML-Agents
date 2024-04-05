@@ -1,0 +1,65 @@
+{
+    "AgentControl": {
+        "checkpoints": [
+            {
+                "steps": 7999966,
+                "file_path": "results\\MultipleTargetFloatingText\\AgentControl\\AgentControl-7999966.onnx",
+                "reward": 2.888888888888889,
+                "creation_time": 1712209177.669174,
+                "auxillary_file_paths": [
+                    "results\\MultipleTargetFloatingText\\AgentControl\\AgentControl-7999966.pt"
+                ]
+            },
+            {
+                "steps": 8499956,
+                "file_path": "results\\MultipleTargetFloatingText\\AgentControl\\AgentControl-8499956.onnx",
+                "reward": 2.4444444444444446,
+                "creation_time": 1712209698.7325132,
+                "auxillary_file_paths": [
+                    "results\\MultipleTargetFloatingText\\AgentControl\\AgentControl-8499956.pt"
+                ]
+            },
+            {
+                "steps": 8999970,
+                "file_path": "results\\MultipleTargetFloatingText\\AgentControl\\AgentControl-8999970.onnx",
+                "reward": 2.7884615384615383,
+                "creation_time": 1712210215.3644602,
+                "auxillary_file_paths": [
+                    "results\\MultipleTargetFloatingText\\AgentControl\\AgentControl-8999970.pt"
+                ]
+            },
+            {
+                "steps": 9499994,
+                "file_path": "results\\MultipleTargetFloatingText\\AgentControl\\AgentControl-9499994.onnx",
+                "reward": 2.625,
+                "creation_time": 1712210704.850358,
+                "auxillary_file_paths": [
+                    "results\\MultipleTargetFloatingText\\AgentControl\\AgentControl-9499994.pt"
+                ]
+            },
+            {
+                "steps": 9718534,
+                "file_path": "results\\MultipleTargetFloatingText\\AgentControl\\AgentControl-9718534.onnx",
+                "reward": 2.9047619047619047,
+                "creation_time": 1712210977.0883439,
+                "auxillary_file_paths": [
+                    "results\\MultipleTargetFloatingText\\AgentControl\\AgentControl-9718534.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 9718534,
+            "file_path": "results\\MultipleTargetFloatingText\\AgentControl.onnx",
+            "reward": 2.9047619047619047,
+            "creation_time": 1712210977.0883439,
+            "auxillary_file_paths": [
+                "results\\MultipleTargetFloatingText\\AgentControl\\AgentControl-9718534.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0.dev0",
+        "torch_version": "2.2.2+cpu"
+    }
+}
